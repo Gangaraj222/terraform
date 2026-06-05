@@ -1,3 +1,11 @@
+
+resource "aws_instance" "roboshop" {
+  ami           = "ami-09c813fb71547fc4f"
+  instance_type = "t3.micro"
+
+}
+
+
 resource "aws_security_group" "allow_all" {
     name        = "allow_all_change"
     description = "allow all traffic"
