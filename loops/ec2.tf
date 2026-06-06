@@ -1,7 +1,13 @@
 
 resource "aws_instance" "roboshop" {
-  ami           = "ami-09c813fb71547fc4f"
-  instance_type = "t3.micro"
+  ami           = var.ami_id
+  count = 4
+  instance_type = var.instance_type == "dev" ? "t3.micro" : "t3.small"
+
+  
+  tags = {
+    Name = var.instances[count.index]
+  }
 
 }
 
@@ -25,3 +31,5 @@ resource "aws_security_group" "allow_all" {
         ipv6_cidr_blocks = ["::/0"]
     }
 }
+
+
